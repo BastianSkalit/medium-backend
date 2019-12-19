@@ -6,7 +6,9 @@ exports.index = (req, res) => {
 };
 
 exports.show = (req, res) => {
-  Users.findOne({ id: req.params.id }).then(users => res.send(users));
+  Users.findOne({
+    where: { id: req.params.id }
+  }).then(users => res.send(users));
 };
 
 exports.add = (req, res) => {

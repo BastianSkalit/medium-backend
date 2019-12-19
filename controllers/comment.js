@@ -25,9 +25,10 @@ exports.index = (req, res) => {
 };
 
 exports.show = (req, res) => {
-  Comment.findOne({ id: req.params.id }).then(comment => res.send(comment));
+  Comment.findOne({
+    where: { id: req.params.id }
+  }).then(comment => res.send(comment));
 };
-
 exports.add = (req, res) => {
   Comment.create(req.body).then(comment => {
     res.send({

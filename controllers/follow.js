@@ -17,7 +17,9 @@ exports.index = (req, res) => {
 };
 
 exports.show = (req, res) => {
-  Follow.findOne({ id: req.params.id }).then(follow => res.send(follow));
+  Follow.findOne({
+    where: { id: req.params.id }
+  }).then(follow => res.send(follow));
 };
 
 exports.add = (req, res) => {

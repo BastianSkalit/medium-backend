@@ -5,9 +5,9 @@ exports.index = (req, res) => {
   Categories.findAll().then(categories => res.send(categories));
 };
 exports.show = (req, res) => {
-  Categories.findOne({ id: req.params.id }).then(categories =>
-    res.send(categories)
-  );
+  Categories.findOne({
+    where: { id: req.params.id }
+  }).then(categories => res.send(categories));
 };
 
 exports.add = (req, res) => {

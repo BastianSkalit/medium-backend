@@ -25,7 +25,9 @@ exports.index = (req, res) => {
 };
 
 exports.show = (req, res) => {
-  Articles.findOne({ id: req.params.id }).then(articles => res.send(articles));
+  Articles.findOne({
+    where: { id: req.params.id }
+  }).then(articles => res.send(articles));
 };
 
 exports.add = (req, res) => {
