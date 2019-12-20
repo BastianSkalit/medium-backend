@@ -1,0 +1,16 @@
+POST http://localhost:3000/api/v1/login
+Content-Type: application/json
+
+{
+    "email" : "simanungkalitbastian@gmail.com",
+    "password" : "121314"
+}
+
+###
+POST http://localhost:3000/verify
+Content-Type:  application/json
+Authorization : Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoxLCJmdWxsbmFtZSI6IkJhc3RpYW4gU2ltYW51bmdrYWxpdCIsInVzZXJuYW1lIjoiQmFzdGlhblNrYWxpdCIsImVtYWlsIjoic2ltYW51bmdrYWxpdGJhc3RpYW5AZ21haWwuY29tIiwicGFzc3dvcmQiOiIxMjEzMTQiLCJpc19hY3RpdmUiOjEsImNyZWF0ZWRBdCI6IjIwMTktMTItMThUMTM6MTc6MzQuMDAwWiIsInVwZGF0ZWRBdCI6IjIwMTktMTItMThUMTM6MTc6MzQuMDAwWiJ9LCJpYXQiOjE1NzY3NzA3MDd9.fY3u_Hwj5Y17oblskfeMbKO-5tb0T__GZ0agrXauskk
+
+###
+GET http://localhost:3000/localhost:3000/api/v1/articles
+Content-Type: application/json

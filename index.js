@@ -1,6 +1,7 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 require("express-group-routes");
+const jwt = require("jsonwebtoken");
 
 const app = express();
 const port = 3000;
@@ -16,6 +17,27 @@ const UsersControllers = require("./controllers/users");
 const AuthController = require("./controllers/auth");
 //middlewares
 const { authenticated } = require("./middleware");
+
+app.post("/verify", (req, res) => {
+  // kita get dahulu headernya
+  const authHeader = req.headers["authorization"];
+
+  // lalu kita ambil tokenya dengan cara melakukan split bearer dan token, lalu kita ambil tokennya di index ke 1,
+  // lalu kita perlu pengkondisian, jika headernya tidak ada kita akan mengembalikan null dan  menginformasikan bahwa permintaan Unauthorized
+  const token = authHeader && authHeader.split(" ")[1];
+  if (token == null) {
+    res.status(401).json({ message: "Unauthorized" });
+  }
+
+  // Lalu jika terdapat header kita juga perlu memastikan apakah token yang kita dapatkan valid
+  // untuk ini kita dapat menggunakan jwt.verify, lalu kita menggunakan collback untuk memberikan informasi ke user
+  jwt.verify(token, "my-secret-key", (err, user) => {
+    if (err) {
+      return res.status(403).send({ message: "Your Token No Longer Valid" });
+    }
+    console.log(user);
+  });
+});
 
 app.group("/api/v1", router => {
   //auth API
